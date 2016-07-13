@@ -83,6 +83,10 @@ public class IMClient {
 		channel.writeAndFlush(msg+"\r\n");
 	}
 
+	public void sendMsgToServer(String msg,ChannelFutureListener listener){
+		channel.writeAndFlush(msg+"\r\n").addListener(listener);
+	}
+
 	private void setSocketConfig(SocketConfig socketConfig) {
 		this.socketConfig = socketConfig;
 	}
