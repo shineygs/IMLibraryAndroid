@@ -41,7 +41,7 @@ public class IMClient {
 		return imClient;
 	}
 	
-	public IMClient connect() {
+	public synchronized IMClient connect() {
 		if (isConnect == false) {
 			group = new NioEventLoopGroup();
 			Bootstrap bootstrap = new Bootstrap().group(group)
