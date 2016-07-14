@@ -21,7 +21,12 @@ public class IMService extends Service {
 
     @Override
     public void onCreate() {
-        connect();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                connect();
+            }
+        }).start();
     }
 
     private void connect(){
