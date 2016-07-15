@@ -28,6 +28,7 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<String> {
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		IMClient.getInstance().setConnectStatus(false);
 		chatistener.onServiceStatusConnectChanged(ChatServiceListener.STATUS_CONNECT_CLOSED);
+		IMClient.getInstance().reconnect();
 	}
     
     @Override

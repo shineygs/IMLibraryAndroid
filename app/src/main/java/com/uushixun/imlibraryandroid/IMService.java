@@ -31,7 +31,7 @@ public class IMService extends Service {
 
     private void connect(){
         SocketConfig config = new SocketConfig();
-        config.host = "10.10.80.94";
+        config.host = "101.201.112.35";
         config.port = 9090;
         client = IMClient.getInstance(config, new ChatServiceListener() {
 
