@@ -33,9 +33,9 @@ public class IMClient {
 	
 	private boolean isConnect = false;
 
-	private int reconnectNum = 10;
+	private int reconnectNum = Integer.MAX_VALUE;
 
-	private long reconnectIntervalTime = 10000;
+	private long reconnectIntervalTime = 5000;
 
 	public static IMClient getInstance(SocketConfig config, ChatServiceListener chatistener) {
 		imClient.setSocketConfig(config);
@@ -70,7 +70,6 @@ public class IMClient {
 
 			} catch (Exception e) {
 				chatistener.onServiceStatusConnectChanged(ChatServiceListener.STATUS_CONNECT_ERROR);
-				e.printStackTrace();
 				reconnect();
 			}
 		}
@@ -86,12 +85,12 @@ public class IMClient {
 			reconnectNum--;
 			try {
 				Thread.sleep(reconnectIntervalTime);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			} catch (InterruptedException e) {}
 			Log.i("TAG","重新连接");
 			disconnect();
 			connect();
+		}else{
+			disconnect();
 		}
 	}
 
